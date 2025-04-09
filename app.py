@@ -12,11 +12,13 @@ st.set_page_config(
     page_title="Global Suicide Data Analysis",
     page_icon="📊",
     layout="wide",
-    initial_sidebar_state="expanded")
+    initial_sidebar_state="collapsed")
 
 # Sidebar
 with st.sidebar:
     st.title('Data info')
+
+st.title("Global suicide data analysis")
 
 #st.markdown("""
 #    <style>
@@ -91,6 +93,7 @@ def make_choropleth(input_df):
 
     choropleth.update_layout(
     title_text='Global suicides per 100k (1985 - 2020)',
+    margin=dict(l=0, r=0, t=30, b=0),
     geo=dict(
         showframe=False,
         showcoastlines=True,
@@ -196,13 +199,12 @@ def calculate_suicide_metrics(data):
 
 #dashboard main panel
 
-col = st.columns((1.5, 3, 1.5), gap='small')
+col = st.columns((1, 3, 1), gap='small')
+col2 = st.columns((0.75, 2, 2), gap='small')
 
 worst_year, max_suicides_year, worst_country, worst_country_no, most_at_risk_age_group, most_at_risk_suicides = calculate_suicide_metrics(data_reshaped)
 
 with col[0]:
-    #st.metric(label="Worst Year", value=worst_year, delta=f"Suicides: {max_suicides_year:,}")
-
     SuByGen_sorted = make_low_suicide_rate_table(data_reshaped)
     st.markdown("### Countries with the lowest suicide rates")
     st.dataframe(SuByGen_sorted, use_container_width=False)
@@ -211,16 +213,18 @@ with col[1]:
     choropleth = make_choropleth(data_reshaped)
     st.plotly_chart(choropleth, use_container_width=True)
 
-    top_countries_plot = make_top_countries_plot(data_reshaped)
-    st.plotly_chart(top_countries_plot, use_container_width=True)
-
-    age_in_years_plot = make_age_in_years_plot(data_reshaped)
-    st.plotly_chart(age_in_years_plot, use_container_width=True)
-
 with col[2]:
-    gender_plot = make_gender_plot(data_reshaped)
-    st.plotly_chart(gender_plot, use_container_width=True)
-
     generation_plot = make_generation_plot(data_reshaped)
     st.plotly_chart(generation_plot, use_container_width=True)
 
+with col2[0]:
+    gender_plot = make_gender_plot(data_reshaped)
+    st.plotly_chart(gender_plot, use_container_width=True)
+
+with col2[1]:
+    top_countries_plot = make_top_countries_plot(data_reshaped)
+    st.plotly_chart(top_countries_plot, use_container_width=True)
+
+with col2[2]:
+    age_in_years_plot = make_age_in_years_plot(data_reshaped)
+    st.plotly_chart(age_in_years_plot, use_container_width=True)
