@@ -6,7 +6,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 
 #loading data
-data_reshaped = pd.read_csv('C:/Users/amzej/Desktop/global-suicide-dashboard/data_reshaped.csv')
+data_reshaped = pd.read_csv('data_reshaped.csv')
 
 st.set_page_config(
     page_title="Global Suicide Insights",
