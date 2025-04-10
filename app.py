@@ -104,7 +104,7 @@ def make_generation_plot(input_df):
     return fig
 
 def make_low_suicide_rate_table(input_df):
-    s_100k_country = input_df.groupby('Country')['SuicidesPer100k'].mean().round(2)
+    s_100k_country = input_df.groupby('Country')['SuicidesPer100k'].mean().round(3)
 
     if isinstance(s_100k_country, pd.Series):
         s_100k_country = s_100k_country.reset_index()
@@ -138,40 +138,53 @@ def calculate_suicide_metrics(data):
 
 #dashboard main panel
 
+worst_year, max_suicides_year, worst_country, worst_country_no, most_at_risk_age_group, most_at_risk_suicides = calculate_suicide_metrics(data_reshaped)
+
+with st.sidebar:
+        st.markdown("about")
+
 plh = st.container()
 
 with plh:
+
     col = st.columns((0.25, 1, 3, 1, 0.25), gap='small')
-    col2 = st.columns((0.25, 0.75, 2, 2, 0.25), gap='small')
+    col2 = st.columns((0.25, 1, 2, 2, 0.25), gap='small')
 
     worst_year, max_suicides_year, worst_country, worst_country_no, most_at_risk_age_group, most_at_risk_suicides = calculate_suicide_metrics(data_reshaped)
 
     with col[1]:
-        SuByGen_sorted = make_low_suicide_rate_table(data_reshaped)
-        st.markdown("#### Countries with the lowest suicide rates")
-        st.dataframe(SuByGen_sorted, use_container_width=False)
+        col3 = st.columns((1, 1), gap='small')
+        with col3[0]:
+            st.metric(label='Deadliest country', value=worst_country, delta=worst_country_no, delta_color="normal", help=None, label_visibility="visible", border=False)
+        with col3[1]:
+            st.metric(label='Deadliest year', value=worst_year, delta=max_suicides_year, delta_color="normal", help=None, label_visibility="visible", border=False)
+
+        gender_plot = make_gender_plot(data_reshaped)
+        st.markdown("### Suicides by gender")
+        st.plotly_chart(gender_plot, use_container_width=False)
 
     with col[2]:
         choropleth = make_choropleth(data_reshaped)
-        st.markdown("#### Global suicides per 100k (1985 - 2020)")
+        st.markdown("### Global suicides per 100k (1985 - 2020)")
         st.plotly_chart(choropleth, use_container_width=True)
 
     with col[3]:
+        st.metric(label='Most at risk age group', value=most_at_risk_age_group, delta=most_at_risk_suicides, delta_color="normal", help=None, label_visibility="visible", border=False)
         generation_plot = make_generation_plot(data_reshaped)
-        st.markdown("#### Suicides by generation")
+        st.markdown("### Suicides by generation")
         st.plotly_chart(generation_plot, use_container_width=False)
 
     with col2[1]:
-        gender_plot = make_gender_plot(data_reshaped)
-        st.markdown("#### Suicides by gender")
-        st.plotly_chart(gender_plot, use_container_width=False)
+        SuByGen_sorted = make_low_suicide_rate_table(data_reshaped)
+        st.markdown("### Countries with the lowest suicide rates")
+        st.dataframe(SuByGen_sorted, use_container_width=False)
 
     with col2[2]:
         top_countries_plot = make_top_countries_plot(data_reshaped)
-        st.markdown("#### Top 10 countries with highest suicide rates")
+        st.markdown("### Top 10 countries with highest suicide rates")
         st.plotly_chart(top_countries_plot, use_container_width=False)
 
     with col2[3]:
         age_in_years_plot = make_age_in_years_plot(data_reshaped)
-        st.markdown("#### No. of suicides by year and age group")
+        st.markdown("### No. of suicides by year and age group")
         st.plotly_chart(age_in_years_plot, use_container_width=False)
