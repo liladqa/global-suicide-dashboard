@@ -14,67 +14,12 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="collapsed")
 
-# Sidebar
-with st.sidebar:
-    st.title('Data info')
+css_file = 'style.css'  
+
+with open(css_file) as f:
+    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 st.title("Global suicide data analysis")
-
-#st.markdown("""
-#    <style>
-#        div.block-container {padding-top: 1.5rem; padding-bottom: 0rem; margin-top: -10px;}
-#    </style>
-#    """, unsafe_allow_html=True)
-
-# CSS styling
-st.markdown("""
-<style>
-
-[data-testid="block-container"] {
-    padding-left: 2rem;
-    padding-right: 2rem;
-    padding-top: 1rem;
-    padding-bottom: 0rem;
-    margin-bottom: -7rem;
-}
-
-[data-testid="stVerticalBlock"] {
-    padding-left: 0rem;
-    padding-right: 0rem;
-}
-
-[data-testid="stMetric"] {
-    background-color: #393939;
-    text-align: center;
-    padding: 15px 0;
-}
-
-[data-testid="stMetricLabel"] {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-[data-testid="stMetricDeltaIcon-Up"] {
-    position: relative;
-    left: 38%;
-    -webkit-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    transform: translateX(-50%);
-}
-
-[data-testid="stMetricDeltaIcon-Down"] {
-    position: relative;
-    left: 38%;
-    -webkit-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    transform: translateX(-50%);
-}
-
-</style>
-""", unsafe_allow_html=True)
-
-#graphs 
 
 def make_choropleth(input_df):
     s_100k_country = data_reshaped.groupby(['CountryToISO', 'Country'])['SuicidesPer100k'].mean().reset_index()
@@ -199,32 +144,35 @@ def calculate_suicide_metrics(data):
 
 #dashboard main panel
 
-col = st.columns((1, 3, 1), gap='small')
-col2 = st.columns((0.75, 2, 2), gap='small')
+plh = st.container()
 
-worst_year, max_suicides_year, worst_country, worst_country_no, most_at_risk_age_group, most_at_risk_suicides = calculate_suicide_metrics(data_reshaped)
+with plh:
+    col = st.columns((1, 3, 1), gap='small')
+    col2 = st.columns((0.75, 2, 2), gap='small')
 
-with col[0]:
-    SuByGen_sorted = make_low_suicide_rate_table(data_reshaped)
-    st.markdown("### Countries with the lowest suicide rates")
-    st.dataframe(SuByGen_sorted, use_container_width=False)
+    worst_year, max_suicides_year, worst_country, worst_country_no, most_at_risk_age_group, most_at_risk_suicides = calculate_suicide_metrics(data_reshaped)
 
-with col[1]:
-    choropleth = make_choropleth(data_reshaped)
-    st.plotly_chart(choropleth, use_container_width=True)
+    with col[0]:
+        SuByGen_sorted = make_low_suicide_rate_table(data_reshaped)
+        st.markdown("### Countries with the lowest suicide rates")
+        st.dataframe(SuByGen_sorted, use_container_width=False)
 
-with col[2]:
-    generation_plot = make_generation_plot(data_reshaped)
-    st.plotly_chart(generation_plot, use_container_width=True)
+    with col[1]:
+        choropleth = make_choropleth(data_reshaped)
+        st.plotly_chart(choropleth, use_container_width=True)
 
-with col2[0]:
-    gender_plot = make_gender_plot(data_reshaped)
-    st.plotly_chart(gender_plot, use_container_width=True)
+    with col[2]:
+        generation_plot = make_generation_plot(data_reshaped)
+        st.plotly_chart(generation_plot, use_container_width=True)
 
-with col2[1]:
-    top_countries_plot = make_top_countries_plot(data_reshaped)
-    st.plotly_chart(top_countries_plot, use_container_width=True)
+    with col2[0]:
+        gender_plot = make_gender_plot(data_reshaped)
+        st.plotly_chart(gender_plot, use_container_width=True)
 
-with col2[2]:
-    age_in_years_plot = make_age_in_years_plot(data_reshaped)
-    st.plotly_chart(age_in_years_plot, use_container_width=True)
+    with col2[1]:
+        top_countries_plot = make_top_countries_plot(data_reshaped)
+        st.plotly_chart(top_countries_plot, use_container_width=True)
+
+    with col2[2]:
+        age_in_years_plot = make_age_in_years_plot(data_reshaped)
+        st.plotly_chart(age_in_years_plot, use_container_width=True)

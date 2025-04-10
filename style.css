@@ -1,0 +1,20 @@
+h1 {
+    color: blue;          
+    font-size: 3px;       
+    font-family: 'Arial', sans-serif;  
+    text-align: center;    
+    margin-top: 0px;      
+    margin-bottom: 0px;   
+    scroll-margin-top: 0px;
+}
+div.stVerticalBlock {
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+div.stMainBlockContainer {
+    padding: 10px;
+}
