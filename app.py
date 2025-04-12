@@ -28,7 +28,7 @@ def make_choropleth(input_df):
     locations = s_100k_country['CountryToISO'],
     z = s_100k_country['SuicidesPer100k'],
     text = s_100k_country['Country'],
-    colorscale = 'Blues',
+    colorscale = 'rdbu',
     autocolorscale=False,
     reversescale=True,
     marker_line_color='darkgray',
@@ -70,10 +70,10 @@ def make_top_countries_plot(input_df):
     return top_countries_plot
 
 def make_gender_plot(input_df):
+    custom_colors = custom_colors = ['#114882', '#FB6C4C']
     s_by_gender = input_df.groupby('Gender')['SuicidesNo'].sum()
     s_by_gender = s_by_gender.rename(index={"female": "Female", "male": "Male"})
-    fig = px.pie(s_by_gender, values=s_by_gender.values, names=s_by_gender.index,
-             color_discrete_sequence=px.colors.qualitative.Plotly)
+    fig = px.pie(s_by_gender, values=s_by_gender.values, names=s_by_gender.index, color_discrete_sequence=custom_colors)
 
     fig.update_traces(
     textinfo='percent+label+value',
@@ -88,9 +88,10 @@ def make_gender_plot(input_df):
     return fig
 
 def make_generation_plot(input_df):
+    custom_colors = custom_colors = ['#2971B2', '#FB6C4C', '#FDDBC7', '#F7F7F7', '#D1E5F0', '#67A9CF', '#2166AC']
     s_by_generation = input_df.groupby('Generation')['SuicidesNo'].sum()
     fig = px.pie(s_by_generation, values=s_by_generation.values, names=s_by_generation.index,
-             color_discrete_sequence=px.colors.qualitative.Plotly)
+             color_discrete_sequence=custom_colors)
 
     fig.update_traces(
     textinfo='percent+label+value',
