@@ -246,9 +246,9 @@ with plh:
     with col[1]:
         col3 = st.columns((1, 1), gap='small')
         with col3[0]:
-            st.metric(label='Deadliest country', value=worst_country, delta=worst_country_no, delta_color="normal", help=None, label_visibility="visible", border=False)
+            st.metric(label='Deadliest country', value=worst_country, help=None, label_visibility="visible", border=False)
         with col3[1]:
-            st.metric(label='Deadliest year', value=worst_year, delta=max_suicides_year, delta_color="normal", help=None, label_visibility="visible", border=False)
+            st.metric(label='Deadliest year', value=worst_year, help=None, label_visibility="visible", border=False)
 
         gender_plot = make_gender_plot(data_reshaped)
         st.markdown("### Suicides by gender")
@@ -260,7 +260,7 @@ with plh:
         st.plotly_chart(choropleth, use_container_width=True)
 
     with col[3]:
-        st.metric(label='Most at risk age group', value=most_at_risk_age_group, delta=most_at_risk_suicides, delta_color="normal", help=None, label_visibility="visible", border=False)
+        st.metric(label='Most at risk age group', value=most_at_risk_age_group, help=None, label_visibility="visible", border=False)
         generation_plot = make_generation_plot(data_reshaped)
         st.markdown("### Suicides by generation")
         st.plotly_chart(generation_plot, use_container_width=False)
