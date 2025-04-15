@@ -49,12 +49,12 @@ def make_choropleth(input_df):
     return choropleth
 
 def make_age_in_years_plot(input_df):
-    color_palette = ["#A9A9A9",  # dark gray
-                 "#708090",  # slate gray
-                 "#4682B4",  # steel blue
-                 "#1E90FF",  # dodger blue
-                 "#000080",  # navy
-                 "#2F4F4F"]  # dark slate gray
+    color_palette = ["#053162",  # dark gray
+                 "#266CAF",  # slate gray
+                 "#85BDD9",  # steel blue
+                 "#E58267",  # dodger blue
+                 "#F7B99B",  # navy
+                 "#67001F"]  # dark slate gray
 
     s_by_age = input_df.groupby(['Year', 'Age'])['SuicidesNo'].sum()
     s_by_age = s_by_age.reset_index()
