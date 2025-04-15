@@ -26,7 +26,7 @@ st.markdown("""<style>
         scroll-margin-top: 0px !important;
         /*font-family: 'Times New Roman', Times, serif !important;*/
     }
-
+        
     div.stVerticalBlock {
         background-color: #ffffff !important;
         padding: 10px !important;
@@ -38,21 +38,19 @@ st.markdown("""<style>
         padding: 10px !important;
     }
 
-
+    /* deadliest country class */
     .st-emotion-cache-3lga8v {
         text-align: center !important;
         margin: 0 auto !important;
     }
 
+    /* deadliest year */
     .st-emotion-cache-1d5393n {
         text-align: center !important;
         margin: 0 auto !important;
     }
 
-    label.st-emotion-cache-kkkxm8{
-        text-align: center !important;
-    }
-
+    /* age group most at risk label */
     .st-emotion-cache-kkkxm8 > div:nth-child(1) > div:nth-child(4) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > label:nth-child(1) {
         text-align: center !important;
         display: block;
@@ -60,14 +58,16 @@ st.markdown("""<style>
         margin: 0 auto !important;
     }
 
-    .st-emotion-cache-5yg26d > div:nth-child(1) > label:nth-child(1) {
+    /* deadliest country label */
+    .st-emotion-cache-3lga8v > div:nth-child(1) > div:nth-child(1) > label:nth-child(1) {
         text-align: center !important;
         display: block !important;
         width: 100% !important;
         margin: 0 auto !important;
     }
-
-    .st-emotion-cache-2gixt2 > div:nth-child(1) > label:nth-child(1){
+            
+    /* deadliest year label */
+    .st-emotion-cache-1d5393n > div:nth-child(1) > div:nth-child(1) > label:nth-child(1){
         text-align: center !important;
         display: block !important;
         width: 100% !important;
