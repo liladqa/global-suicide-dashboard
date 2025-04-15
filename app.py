@@ -17,7 +17,94 @@ st.set_page_config(
 css_file = 'style.css'  
 
 with open(css_file) as f:
-    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+    st.markdown("""<style>
+    h1{
+        color: blue ;          
+        font-size: 3px ;       
+        font-family: 'Arial', sans-serif;  
+        text-align: center !important;    
+        margin-top: 0px !important;      
+        margin-bottom: 0px !important;   
+        scroll-margin-top: 0px !important;
+        /*font-family: 'Times New Roman', Times, serif !important;*/
+    }
+
+    div.stVerticalBlock {
+        background-color: #ffffff !important;
+        padding: 10px !important;
+        border-radius: 5px !important;
+
+    }
+
+    div.stMainBlockContainer {
+        padding: 10px !important;
+    }
+
+
+    .st-emotion-cache-3lga8v {
+        text-align: center !important;
+        margin: 0 auto !important;
+    }
+
+    .st-emotion-cache-1d5393n {
+        text-align: center !important;
+        margin: 0 auto !important;
+    }
+
+    label.st-emotion-cache-kkkxm8{
+        text-align: center !important;
+    }
+
+    .st-emotion-cache-kkkxm8 > div:nth-child(1) > div:nth-child(4) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > label:nth-child(1) {
+        text-align: center !important;
+        display: block;
+        width: 100% !important;
+        margin: 0 auto !important;
+    }
+
+    .st-emotion-cache-5yg26d > div:nth-child(1) > label:nth-child(1) {
+        text-align: center !important;
+        display: block !important;
+        width: 100% !important;
+        margin: 0 auto !important;
+    }
+
+    .st-emotion-cache-2gixt2 > div:nth-child(1) > label:nth-child(1){
+        text-align: center !important;
+        display: block !important;
+        width: 100% !important;
+        margin: 0 auto !important;
+    }
+
+    .st-emotion-cache-kkkxm8 > div:nth-child(1) > div:nth-child(4) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1){
+        text-align: center !important;
+    }
+
+    .st-emotion-cache-kkkxm8 > div:nth-child(1) > div:nth-child(4) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(2){
+        text-align: center !important;
+    }
+
+    .st-emotion-cache-5yg26d > div:nth-child(1) > div:nth-child(3) > svg:nth-child(1){
+        visibility: hidden !important;
+        width: 0px !important;
+        height: 0px !important;
+        position: absolute !important;
+    }
+
+    .st-emotion-cache-2gixt2 > div:nth-child(1) > div:nth-child(3) > svg:nth-child(1){
+        visibility: hidden !important;
+        width: 0px !important;
+        height: 0px !important;
+        position: absolute !important;
+    }
+
+    .st-emotion-cache-kkkxm8 > div:nth-child(1) > div:nth-child(4) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > svg:nth-child(1){
+        visibility: hidden !important;
+        width: 0px !important;
+        height: 0px !important;
+        position: absolute !important;
+    }
+</style>""", unsafe_allow_html=True)
 
 st.title("Exploratory Analysis of Suicide Data (1985–2020)")
 
