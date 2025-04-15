@@ -49,10 +49,17 @@ def make_choropleth(input_df):
     return choropleth
 
 def make_age_in_years_plot(input_df):
+    color_palette = ["#A9A9A9",  # dark gray
+                 "#708090",  # slate gray
+                 "#4682B4",  # steel blue
+                 "#1E90FF",  # dodger blue
+                 "#000080",  # navy
+                 "#2F4F4F"]  # dark slate gray
+
     s_by_age = input_df.groupby(['Year', 'Age'])['SuicidesNo'].sum()
     s_by_age = s_by_age.reset_index()
     age_in_years_plot = px.line(s_by_age, x='Year', y="SuicidesNo", color="Age",
-    markers=True, line_shape="spline")
+    markers=True, line_shape="spline", color_discrete_sequence=color_palette)
 
     age_in_years_plot.update_layout(
     template="plotly_white",
@@ -141,8 +148,6 @@ def calculate_suicide_metrics(data):
 
 worst_year, max_suicides_year, worst_country, worst_country_no, most_at_risk_age_group, most_at_risk_suicides = calculate_suicide_metrics(data_reshaped)
 
-with st.sidebar:
-        st.markdown("about")
 
 plh = st.container()
 
