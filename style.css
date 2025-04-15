@@ -65,10 +65,10 @@ label.st-emotion-cache-kkkxm8{
 }
 
 .st-emotion-cache-5yg26d > div:nth-child(1) > div:nth-child(3) > svg:nth-child(1){
-    visibility: hidden;
-    width: 0px;
-    height: 0px;
-    position: absolute;
+    visibility: hidden !important;
+    width: 0px !important;
+    height: 0px !important;
+    position: absolute !important;
 }
 
 .st-emotion-cache-2gixt2 > div:nth-child(1) > div:nth-child(3) > svg:nth-child(1){
