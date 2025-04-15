@@ -14,10 +14,8 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="collapsed")
 
-css_file = 'style.css'  
-
-with open(css_file) as f:
-    st.markdown("""<style>
+#css_file = 'style.css'  
+st.markdown("""<style>
     h1{
         color: blue ;          
         font-size: 3px ;       
